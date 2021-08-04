@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.network-logo {
+    height: 2.5em;
+}
+
+.col-left {
+    margin-left: 5em;
+}
+
+.profile-pic {
+    height: 4em;
+    width: 4em;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(58, 58, 58);
+}
+
+.profile-name {
+    font-size: 1.3em;
+    font-weight: 600;
+}
+
+.profile-username {
+    font-size: .9em;
+    color: rgb(167, 167, 167);
+    padding: 0;
+    text-decoration: none;
+}
+
+.profile-username:hover {
+    color: white;
+}
+
+.new-post-text {
+    border: 1px solid white;
+    background: transparent;
+}
+
+.posts {
+    border: .5px solid rgb(54, 54, 54);
+    padding: 1em 0;
+    margin: 0 .2em;
+}
+
+.profile-pic-post {
+    height: 3em;
+    width: 3em;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-name-post {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.profile-username-post {
+    font-size: .9em;
+    color: rgb(167, 167, 167);
+    padding: 0;
+    text-decoration: none;
+}
+
+.profile-username-post:hover {
+    color: white;
+}
+
+.content-post {
+    margin: 1em;
+    font-weight: 200;
+}
+
+.post-list {
+    height: 78vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.time {
+    font-size: .9em;
+    color: rgb(95, 95, 95);
+    margin-top: 0.1em;
+}
+
+.profile-cover {
+    background: linear-gradient(45deg, rgba(49,78,145,1) 0%, rgba(109,176,202,1) 100%);
+    height: 10em;
+    border-top-left-radius: 2em;
+    border-top-right-radius: 2em;
+    margin: 0 1em;
+    position: relative;
+}
+
+.profile-pic-page {
+    position: absolute;
+    top: 50%;
+    left: 3%;
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid black;
+}
+
+.profile-page-name {
+    margin-left: 1.2em;
+    margin-top: 1em;
+    margin-bottom: 0;
+}
+
+.profile-page-username {
+    margin-left: 1.5em;
+    margin-top: 0;
+    font-weight: 400;
+    color: rgb(148, 148, 148);
+}
+
+.follow-button {
+    text-align: end;
+    margin: 1em;
+}
+
+.profile-follow {
+    margin-left: 2em;
+    font-size: 1.1em;
+    font-weight: 300;
+    color: rgb(148, 148, 148);
+}
+
+.profile-follow > strong {
+    font-weight: 700;
+    color: white;
+    padding-right: .5em;
+}
+
+.date-created {
+    float: right;
+    margin-right: 1em;
+    font-size: .5em;
+    color: rgb(148, 148, 148);
+    align-self: flex-end;
+    margin-left: 2em;
+}
+
+.calendar-icon{
+    vertical-align: bottom;
+}
+
+.date-text {
+    font-size: 1.1em;
+}
+
+.page-link {
+    background-color: black;
+    color: white;
+}
+
+.pagination > .disabled > .page-link {
+    background-color: black;
+}
+
+.pagination > .active > .page-link {
+    border-color: white;
+    color: black;
+    background-color: white;
+}
+
+.like-button {
+    height: fit-content;
+    font-size: 1.5em;
+    color: #CE3A60;
+}
+
+.like-button:hover {
+    color: #959494;
+}
+
+.unlike-button {
+    height: fit-content;
+    font-size: 1.5em;
+}
+
+.unlike-button:hover {
+    color: #CE3A60;
+}
+
+.edit-button {
+    height: fit-content;
+    font-size: 1.5em;
+    color: white;
+}
+
+.edit-button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+.like-count {
+    margin-top: .5em;
+    margin-right: .5em;
+    color: #CE3A60;
+}
+
+.edit-textarea {
+    border: 1px solid white;
+    color: white;
+    padding: 1em;
+    width: 95%;
+}

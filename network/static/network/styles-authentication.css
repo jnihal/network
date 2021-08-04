@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("media/80573.jpg");
+    background-size: 100%;
+    background-position: 0 30%;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.network-logo {
+    height: 15em;
+}
+
+.website-name {
+    text-align: center;
+    font-size: 2em;
+    color: #6CB0CA;
+}
+
+.authentication-form {
+    background: rgba( 0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 1em;
+    margin-top: 5em;
+    padding: 1em;
+    width: 50em;
+}
+
+.login-form, .register-form {
+    position: relative;
+    color: black;
+}
+
+.error-message {
+    position: absolute;
+    z-index: 1;
+    top: -2.3em;
+    color: brown;
+}
+
+.profile-image {
+    display: block;
+    height: 10em;
+    object-fit: cover;
+    width: 10em;
+    border-radius: 50%;
+    margin: 1em auto;
+}
+
+.image-label {
+    position: relative;
+    display: block;
+    margin: auto;
+    width: 10em;
+    border-radius: 50%;
+}
+
+.overlay {
+    position: absolute; 
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.685);
+    width: 100%;
+    transition: .5s ease;
+    opacity:0;
+    color: white;
+    font-size: 1em;
+    padding: .9em;
+    text-align: center;
+}
+
+.profile-image:hover + .overlay {
+    opacity: 1;
+}
+
+.profile-image:hover {
+    opacity: .8;
+    cursor: pointer;
+}

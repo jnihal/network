@@ -1,0 +1,68 @@
+{% extends "network/layout-authentication.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="row justify-content-center">
+        <h3 style="width: auto;" id="login-title">Register</h3>
+    </div>
+    <hr>
+
+    <form action="{% url 'register' %}" method="post" class="register-form" id="register-form-id" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div id="personal-info">
+            <div class="mb-4 mt-5">
+                <label for="formFile" class="form-label image-label">
+                    <img class="profile-image" id="image-output" src="{% static 'network/media/default-profile-picture.jpg' %}" alt="Profile Picture">
+                    <div class="overlay">Choose Photo</div>
+                </label>
+                <input hidden class="form-control" type="file" id="formFile" name="profile_pic" onchange="loadImage(event)">
+            </div>
+            <div id="name-field">
+                <div class="form-floating mb-3">
+                    <input required class="form-control" id="floatingInput" autofocus type="text" name="first_name" placeholder="First Name">
+                    <label for="floatingInput">First Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input required class="form-control" id="floatingInput" type="text" name="last_name" placeholder="Last Name">
+                    <label for="floatingInput">Last Name</label>
+                </div>
+            </div>
+        </div>
+
+        <div id="login-info">
+            <div class="form-floating mb-3 mt-5">
+                <input required class="form-control" id="floatingInput" type="text" name="username" placeholder="Username">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input required class="form-control" id="floatingInput" type="email" name="email" placeholder="Email Address">
+                <label for="floatingInput">Email Address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input required class="form-control" id="floatingInput" type="password" name="password" placeholder="Password">
+                <label for="floatingInput">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input class="form-control" id="floatingInput" type="password" name="confirmation" placeholder="Confirm Password">
+                <label for="floatingInput">Confirm Password</label>
+            </div>
+        </div>
+
+        {% if message %}
+            <div class="error-message">{{ message }}</div>
+        {% endif %}
+        
+        <div class="row mt-4">
+            <div class="col"><a class="btn bg-transparent ps-0 pe-0" href="{% url 'login' %}" style="color: #1858ee;">Log In</a></div>
+            <div class="col-auto" id="next"><input class="btn btn-secondary" type="button" value="Next"></div>
+            <div class="col-auto" id="back"><input class="btn btn-secondary" type="button" value="Back"></div>
+            <div class="col-auto" id="register"><input class="btn btn-primary" type="submit" value="Register"></div>
+        </div>
+    </form>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/register.js' %}"></script>
+{% endblock %}

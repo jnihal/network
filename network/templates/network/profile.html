@@ -1,0 +1,114 @@
+{% extends "network/layout.html" %}
+
+{% load static %}
+{% load humanize %}
+
+{% block nav %}
+    <a class="btn btn-dark" href="{% url 'index' %}">Home</a>
+{% endblock %}
+
+{% block body %}
+    <div class="col">
+        <div class="row profile-cover">
+            <div>
+                {% if user.profile.profile_pic.url != None %}
+                    <img class="profile-pic-page" src="{{ user.profile.profile_pic.url }}" alt="Profile Picture">
+                {% else %}
+                    <img class="profile-pic-page" src="{% static 'network/media/default-profile-picture.jpg' %}" alt="Profile Picture">
+                {% endif %}
+            </div>
+        </div>
+        <div>
+            {% if user == request.user %}
+                <div style="visibility: hidden;" class="follow-button">
+                    <button  type="button" class="btn btn-outline-danger rounded-pill">Unfollow</button>
+                </div>
+            {% else %}
+                {% if following %}
+                    <div class="follow-button">
+                        <button type="button" id="follow" class="btn btn-outline-danger rounded-pill" data-user-id="{{ user.pk }}">Unfollow</button>
+                    </div>
+                {% else %}
+                    <div class="follow-button">
+                        <button type="button" id="follow" class="btn btn-outline-primary rounded-pill" data-user-id="{{ user.pk }}">Follow</button>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <h3 class="profile-page-name">
+                {{ user.first_name }} {{ user.last_name }}
+                <div class="date-created">
+                    <span class="material-icons calendar-icon">date_range</span>
+                    <span class="date-text">Joined on {{ user.profile.timestamp }}</span>
+                </div>
+            </h3>
+            <h5 class="profile-page-username">
+                @{{ user.username }}
+            </h5>
+            <div class="profile-follow mt-4"><strong id="follower_count">{{ followers_count }}</strong>Followers</div>
+            <div class="profile-follow"><strong>{{ following_count }}</strong>Following</div>
+            <div class="profile-follow"><strong>{{ post_count }}</strong>Posts</div>
+        </div>
+    </div>
+    <div class="col">
+        <h2>{{ user.first_name }}'s Posts</h2>
+        <hr>
+        <div class="post-list">
+            {% for post in posts %}
+                <div class="row posts">
+                    <div class="row">
+                        <div class="col-auto">
+                            {% if post.creator.profile.profile_pic.url != None %}
+                                <img class="profile-pic-post" src="{{ post.creator.profile.profile_pic.url }}" alt="Profile Picture">
+                            {% else %}
+                                <img class="profile-pic-post" src="{% static 'network/media/default-profile-picture.jpg' %}" alt="Profile Picture">
+                            {% endif %}
+                        </div>
+
+                        <div class="col-auto">
+                            <div class="row profile-name-post">
+                                {{ post.creator.first_name }}
+                                {{ post.creator.last_name }}
+                            </div>
+                            <div class="row">
+                                <a class="profile-username-post" href="{% url 'profile' id=post.creator.pk %}">@{{ post.creator.username }}</a>
+                            </div>
+                        </div>
+                        <div class="col time">
+                            ・{{ post.timestamp|naturaltime }}
+                        </div> 
+                        <div class="col d-grid gap-2 d-md-flex justify-content-md-end pe-0" id="toolbar-buttons">
+                            {% if request.user.pk in post.liked_users %}
+                                <button class="material-icons-round btn btn-bg-transparent p-0 like-button" id="like-button" data-post-id="{{ post.pk }}">
+                                    favorite
+                                </button>
+                            {% else %}
+                                <button class="material-icons-round btn btn-bg-transparent p-0 unlike-button" id="like-button" data-post-id="{{ post.pk }}">
+                                    favorite_border
+                                </button>
+                            {% endif %}
+                            <span class="like-count" id="like-count-{{ post.pk }}">{{ post.likes.count }}</span>
+
+                            {% if request.user == post.creator %}
+                                <button class="material-icons btn btn-bg-transparent pt-0 pb-0 p-2 edit-button" id="edit-button" data-post-id="{{ post.pk }}">
+                                    edit_note
+                                </button>
+                                <button hidden class="material-icons btn btn-bg-transparent pt-0 pb-0 p-2 edit-button" id="save-button-{{ post.pk }}">
+                                    done
+                                </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row content-post" id="content-{{ post.pk }}">
+                        {{ post.content }}
+                    </div>
+                    <textarea autofocus hidden class="bg-transparent edit-textarea ms-3 mt-3" id="textarea-{{ post.pk }}">{{ post.content }}</textarea>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/follow.js' %}"></script>
+{% endblock %}
